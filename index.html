@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
   <title>getlawyer.si is for sale</title>
   <meta name="description" content="This domain is for sale. Contact the owner.">
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='black'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='black'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    html, body { min-height: 100%; }
 
     body {
       background: #ffffff;
@@ -23,6 +24,7 @@
       line-height: 1.6;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     main {
@@ -68,34 +70,94 @@
       margin: 2.5rem 0;
     }
 
-    p.copy { color: #444; font-size: 1.05rem; }
+    p.copy {
+      color: #444;
+      font-size: 1.05rem;
+    }
 
-    .contact { margin-top: 2rem; font-size: 1.05rem; }
+    .contact {
+      margin-top: 2rem;
+      font-size: 1.05rem;
+    }
+
     .contact a {
       color: #111;
       font-weight: 500;
       text-decoration: underline;
       text-underline-offset: 4px;
     }
-    .contact a:hover { background: #111; color: #fff; text-decoration: none; }
+
+    .contact a:hover {
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+    }
 
     footer {
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+
+    .other-websites {
+      max-width: 40rem;
+      margin: 0 auto 2rem;
+    }
+
+    .other-websites h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #111;
+    }
+
+    .other-websites p {
       font-size: 0.8rem;
       color: #888;
-      text-align: center;
     }
-    footer p + p { margin-top: 0.3rem; }
+
+    .website-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .website-links a {
+      color: #333;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #aaa;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .website-links a:hover {
+      color: #000;
+      border-color: #000;
+    }
+
+    .legal {
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    .legal p + p {
+      margin-top: 0.3rem;
+    }
   </style>
 </head>
-<body>
 
+<body>
   <main>
     <div class="label">For sale</div>
 
     <h1 id="domain">getlawyer.si</h1>
 
-    <p class="headline">No lawyer here. Just a domain.</p>
+    <p class="headline">
+      No lawyer here. Just a domain.
+    </p>
 
     <hr>
 
@@ -107,13 +169,34 @@
 
     <p class="contact">
       Offers accepted without a power of attorney:
-      <a href="mailto:turkjanze@gmail.com" id="mail">turkjanze@gmail.com</a>
+      <a href="mailto:turkjanze@gmail.com" id="mail">
+        turkjanze@gmail.com
+      </a>
     </p>
   </main>
 
   <footer>
-    <p>© <span id="year"></span> · Serious offers only. Jokes are welcome too.</p>
-    <p>This site does not provide legal services or advice.</p>
+    <div class="other-websites">
+      <h3>Explore more interesting websites</h3>
+      <p>Discover other domains that might catch your eye.</p>
+
+      <div class="website-links">
+        <a href="https://getdoctor.si"
+           target="_blank" rel="noopener noreferrer">
+          getdoctor.si ↗
+        </a>
+
+        <a href="https://transfermarket.si"
+           target="_blank" rel="noopener noreferrer">
+          transfermarket.si ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p>© <span id="year"></span> · Serious offers only. Jokes are welcome too.</p>
+      <p>This site does not provide legal services or advice.</p>
+    </div>
   </footer>
 
   <script>
@@ -124,11 +207,12 @@
     document.title = DOMAIN + " is for sale";
 
     const mail = document.getElementById("mail");
-    mail.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Interested in " + DOMAIN);
+    mail.href = "mailto:" + EMAIL + "?subject=" +
+      encodeURIComponent("Interested in " + DOMAIN);
     mail.textContent = EMAIL;
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
-
 </body>
 </html>
