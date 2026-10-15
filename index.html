@@ -11,6 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -180,37 +181,73 @@
       <h3>Explore more interesting websites</h3>
       <p>Discover other domains that might catch your eye.</p>
 
-      <div class="website-links">
-        <a href="https://getdoctor.si"
-           target="_blank" rel="noopener noreferrer">
-          getdoctor.si ↗
-        </a>
-
-        <a href="https://transfermarket.si"
-           target="_blank" rel="noopener noreferrer">
-          transfermarket.si ↗
-        </a>
-      </div>
+      <div class="website-links" id="website-links"></div>
     </div>
 
     <div class="legal">
-      <p>© <span id="year"></span> · Serious offers only. Jokes are welcome too.</p>
+      <p>
+        © <span id="year"></span> ·
+        Serious offers only. Jokes are welcome too.
+      </p>
       <p>This site does not provide legal services or advice.</p>
     </div>
   </footer>
 
   <script>
+    // ====== SETTINGS ======
     const EMAIL = "turkjanze@gmail.com";
-    const DOMAIN = "getlawyer.si";
+    const DOMAIN_OVERRIDE = "getlawyer.si";
 
-    document.getElementById("domain").textContent = DOMAIN;
-    document.title = DOMAIN + " is for sale";
+    const OTHER_DOMAINS = [
+      "transfermarket.si",
+      "getdoctor.si",
+      "getlawyer.si"
+    ];
+    // ======================
 
+    // Detect current domain
+    const hostname = location.hostname.replace(/^www\./, "");
+
+    const host = DOMAIN_OVERRIDE ||
+      (hostname &&
+       hostname !== "localhost" &&
+       !/^[\d.]+$/.test(hostname)
+        ? hostname
+        : "getlawyer.si");
+
+    document.getElementById("domain").textContent = host;
+    document.title = host + " is for sale";
+
+    // Contact email
     const mail = document.getElementById("mail");
-    mail.href = "mailto:" + EMAIL + "?subject=" +
-      encodeURIComponent("Interested in " + DOMAIN);
+
+    mail.href = "mailto:" + EMAIL +
+      "?subject=" + encodeURIComponent("Interested in " + host);
+
     mail.textContent = EMAIL;
 
+    // Generate links to other domains
+    const linksContainer = document.getElementById("website-links");
+
+    OTHER_DOMAINS
+      .filter(domain => domain !== host)
+      .forEach(domain => {
+        const link = document.createElement("a");
+
+        link.href = "https://" + domain;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = domain + " ↗";
+
+        linksContainer.appendChild(link);
+      });
+
+    // Hide section if no other domains exist
+    if (!linksContainer.children.length) {
+      document.querySelector(".other-websites").style.display = "none";
+    }
+
+    // Current year
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
